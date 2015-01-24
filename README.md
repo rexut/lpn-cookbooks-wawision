@@ -3,6 +3,10 @@ WaWision Cookbook
 
 The Chef WaWision cookbook installs and configures the ERP/CRM [WaWision] according to the [installation instruction] of the Open-Source version.
 
+## CI Status
+
+[![Build Status](https://travis-ci.org/lipro-cookbooks/wawision.svg?branch=master)](https://travis-ci.org/lipro-cookbooks/wawision)
+
 ## Requirements
 
 TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
