@@ -50,6 +50,61 @@ end
   depends cb
 end
 
+recipe 'default', 'Does run app recipe as default.'
+recipe 'app', 'Dumps chef node data to json file.'
+
 provides 'wawision'
+
+attribute 'wawision/install_method',
+  display_name: 'WaWision installation method',
+  description: 'The installation method to use.',
+  type: 'string',
+  default: 'tar'
+
+attribute 'wawision/version',
+  display_name: 'WaWision package version',
+  description: 'The version of the WaWision package to install.',
+  type: 'string',
+  default: '3.1-rc3'
+
+attribute 'wawision/server',
+  display_name: 'WaWision installation server',
+  description: 'The server to donload the WaWision package file.',
+  type: 'string',
+  default: 'http://downloads.sourceforge.net'
+
+attribute 'wawision/source',
+  display_name: 'WaWision installation source',
+  description: 'The full URL to the WaWision package file.',
+  type: 'string'
+
+attribute 'wawision/checksum',
+  display_name: 'WaWision package checksum',
+  description: 'The checksum of the package file.',
+  type: 'string'
+
+attribute 'wawision/user',
+  display_name: 'WaWision installation username',
+  description: 'The name of the user who will own and run WaWision.',
+  type: 'string',
+  default: 'wawision'
+
+attribute 'wawision/group',
+  display_name: 'WaWision installation groupname',
+  description: 'The name of the group who will own and run WaWision.',
+  type: 'string',
+  default: 'wawision'
+
+attribute 'wawision/use_system_accounts',
+  display_name: 'WaWision usr/group system flag',
+  description: 'The user/group should be created as `system` account.',
+  type: 'boolean',
+  default: true
+
+attribute 'wawision/home',
+  display_name: 'WaWision installation and home directory',
+  description: 'The path to the WaWision home location.',
+  type: 'string',
+  default: '/var/lib/wawision'
 
 # vim: ts=2 sts=2 sw=2 ai si et ft=ruby

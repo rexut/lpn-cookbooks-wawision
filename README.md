@@ -1,15 +1,36 @@
 WaWision Cookbook
 =================
 
-The Chef WaWision cookbook installs and configures the ERP/CRM [WaWision] according to the [installation instruction] of the Open-Source version.
+The Chef WaWision cookbook installs and configures the ERP/CRM [WaWision]
+according to the [installation instruction] of the Open-Source version
+(*OSS testing*).
 
 ## CI Status
 
 [![Build Status](https://travis-ci.org/lipro-cookbooks/wawision.svg?branch=master)](https://travis-ci.org/lipro-cookbooks/wawision)
 
+### Known Issues and Things TODO
+
+**This Chef cookbook has state of WORK IN PROGRESS!** There is something
+to do now. It is not (yet) ready for final use. See the list below.
+
+- [ ] WaWision application
+  - [ ] Support different installation methods:
+    - [X] ~~Remote TAR file extraction from [SourceForge]~~
+    - [ ] Remote Git/SVN extraction
+          (**Where is the original source code repository?**)
+  - [ ] Database setup and migration
+- [ ] WEB Server integration:
+  - [ ] Support for Apache 2
+  - [ ] Support for NginX
+- [ ] Database Server integration:
+  - [ ] Support for MariaDB (aka. MySQL)
+
 ## Requirements
 
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
+TODO: List your cookbook requirements. Be sure to include any requirements
+this cookbook has on platforms, libraries, other cookbooks, packages,
+operating systems, etc.
 
 ### Platform
 
@@ -22,13 +43,15 @@ The following platforms are supported and protected by unit tests:
 
 * Debian:       jessie/sid, 7.6, 7.5, 7.4, 7.2, 7.1, 7.0, 6.0.5
 * Ubuntu:       14.10, 14.04, 13.10, 13.04, 12.04, 10.04
-* RHEL/CentOS:  7.0, (6.6), 6.5, 6.4, 6.3, (6.2, 6.1), 6.0, (5.11), 5.10, 5.9, 5.8, (5.7, 5.6)
+* RHEL/CentOS:  7.0, (6.6), 6.5, 6.4, 6.3, (6.2, 6.1), 6.0, (5.11), 5.10, 5.9,
+                5.8, (5.7, 5.6)
 * Oracle Linux: 6.5, 5.10
 * Amazon Linux: 2014.09, 2014.03, 2013.09, 2012.09
 
 Other Debian and RHEL family distributions are assumed to work.
 
-The following platforms are **unsupported** and protected as such systems by unit tests:
+The following platforms are **unsupported** and protected as such systems
+by unit tests:
 
 * Fedora:       21, 20, 19, 18
 * SEL/SUSE:     12.0, 11.3, 11.2, 11.1
@@ -113,3 +136,4 @@ All about WaWision ERP/CRM can be found on the project [website].
 [WaWision]: http://www.wawision.de/
 [website]: http://www.wawision.de/
 [installation instruction]: http://www.wawision.de/installationsanleitung-open-source-version-von-wawision/
+[SourceForge]: http://sourceforge.net/projects/wawision/files/

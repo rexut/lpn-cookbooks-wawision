@@ -21,4 +21,16 @@
 
 include_recipe 'wawision::commons'
 
+app = node['wawision']
+
+# Gracefully handle the failure for an invalid installation type
+begin
+  include_recipe "wawision::_app_#{app['install_method']}"
+rescue Chef::Exceptions::RecipeNotFound
+  raise Chef::Exceptions::RecipeNotFound, 'The install method ' \
+    "`#{app['install_method']}` is not supported by this cookbook. " \
+    'Please ensure you have spelled it correctly. If you continue to ' \
+    'encounter this error, please file an issue.'
+end
+
 # vim: ts=2 sts=2 sw=2 ai si et ft=ruby

@@ -31,6 +31,7 @@ group :integration do
   cookbook 'test-helper',
     github: 'lipro-cookbooks/test-helper',
     branch: 'master'
+  cookbook 'wawision_app', path: 'test/fixtures/cookbooks/wawision_app'
 end
 
 cookbook 'apt'

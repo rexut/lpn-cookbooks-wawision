@@ -52,7 +52,64 @@ shared_examples 'app_recipes' do |platform, version|
     include_examples 'included recipes', %w(
       wawision::commons
       wawision::commons_os
+      wawision::_app_tar
     )
+  end
+end
+
+###############################################################################
+#
+# tests with node defaults, shared over all supported platforms
+#
+shared_examples 'app_defaults' do |platform, version|
+  context "on #{platform} #{version} with defaults (valid install method)" do
+    property = load_platform_properties(
+      platform: platform,
+      platform_version: version
+    )
+
+    app = property[:wawision]
+
+    let(:install_method) { "#{app[:install_method]}" }
+
+    cached(:chef_run) do
+      ChefSpec::SoloRunner.new(platform: platform, version: version)
+        .converge(described_recipe)
+    end
+    subject { chef_run }
+
+    include_examples 'raises no error on equal' do
+      let(:v1) { install_method }
+      let(:v2) { chef_run.node['wawision']['install_method'] }
+    end
+  end
+end
+
+###############################################################################
+#
+# tests with node overrides, shared over all supported platforms
+#
+shared_examples 'app_overrides' do |platform, version|
+  context "on #{platform} #{version} with overrides (invalid install method)" do
+    _property = load_platform_properties(
+      platform: platform,
+      platform_version: version
+    )
+
+    cached(:chef_run) do
+      ChefSpec::SoloRunner.new(platform: platform, version: version) do |node|
+        node.set['wawision']['install_method'] = 'invalid'
+      end.converge(described_recipe)
+    end
+    subject { chef_run }
+
+    include_examples 'raises an recipe not found error' do
+      let(:eem) do
+        'The install method `invalid` is not supported by this cookbook. ' \
+        'Please ensure you have spelled it correctly. If you continue to ' \
+        'encounter this error, please file an issue.'
+      end
+    end
   end
 end
 
@@ -84,6 +141,8 @@ describe 'wawision::app' do
   supported_platforms.each do |platform, versions|
     versions.each do |version|
       include_examples 'app_recipes', platform, version
+      include_examples 'app_defaults', platform, version
+      include_examples 'app_overrides', platform, version
     end
   end
 
